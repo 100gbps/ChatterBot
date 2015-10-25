@@ -1,13 +1,8 @@
 from unittest import TestCase
-from chatterbot.corpus.utils import read_corpus, load_corpus
+from chatterbot.corpus.utils import load_corpus
 
 
 class CorpusUtilsTestCase(TestCase):
-
-    def test_read_corpus(self):
-        #data = read_corpus("chatterbot/corpus/english/greetings/conversations.json")
-        # TODO
-        pass
 
     def test_load_corpus(self):
         corpus = load_corpus("chatterbot.corpus.english.greetings")

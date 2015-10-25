@@ -1,4 +1,5 @@
-import importlib
+from importlib import import_module as import_string
+from inspect import isclass
 
 
 def import_module(dotted_path):
@@ -7,8 +8,12 @@ def import_module(dotted_path):
     dot notated import path for the module.
     """
 
-    module_parts = dotted_path.split(".")
-    module_path = ".".join(module_parts[:-1])
-    module = importlib.import_module(module_path)
+    module_path, class_name = dotted_path.rsplit('.', 1)
 
-    return getattr(module, module_parts[-1])
+    module = import_string(module_path)
+
+    if hasattr(module, class_name):
+        return getattr(module, class_name)
+
+    return import_string(dotted_path)
+
